@@ -29,7 +29,7 @@ export default function MissionControl({ jobId, onReset }) {
     };
 
     useEffect(() => {
-        const eventSource = new EventSource(`/api/v1/jobs/${jobId}/events`);
+        const eventSource = new EventSource(`${import.meta.env.VITE_API_URL || ''}/api/v1/jobs/${jobId}/events`);
 
         eventSource.onmessage = (event) => {
             // Keep alive ping or generic message
@@ -234,12 +234,12 @@ export default function MissionControl({ jobId, onReset }) {
                                 <div
                                     key={i}
                                     className={`flex gap-3 py-2 px-3 rounded-lg transition-colors ${isSeparator ? 'text-slate-300 dark:text-slate-600 py-1' :
-                                            log.level === 'error' ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400' :
-                                                log.level === 'warning' ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400' :
-                                                    isGemini ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-l-2 border-purple-400' :
-                                                        isGroq ? 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 border-l-2 border-cyan-400' :
-                                                            log.message.startsWith('Executing:') ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300' :
-                                                                'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                                        log.level === 'error' ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400' :
+                                            log.level === 'warning' ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400' :
+                                                isGemini ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-l-2 border-purple-400' :
+                                                    isGroq ? 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 border-l-2 border-cyan-400' :
+                                                        log.message.startsWith('Executing:') ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300' :
+                                                            'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                                         }`}
                                 >
                                     <span className="text-slate-400 dark:text-slate-500 shrink-0 font-mono text-sm">
