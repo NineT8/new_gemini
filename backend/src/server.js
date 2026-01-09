@@ -13,7 +13,7 @@ const app = express();
 const port = 8000;
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://new-gemini-nine.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
